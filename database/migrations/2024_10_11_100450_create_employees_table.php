@@ -8,8 +8,8 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->bigInteger('nik')->unsigned();
-            $table->integer('employee_id')->unsigned()->primary(); // Set sebagai primary key
+            $table->bigInteger('nik')->unsigned()->primary(); // Jadikan nik sebagai primary key
+            $table->integer('employee_id')->unsigned()->unique(); // Jadikan employee_id sebagai unique
             $table->string('name', 255);
             $table->enum('position', ['Karyawan', 'Manager', 'Direktur', 'HRGA']);
             $table->integer('department_id')->unsigned()->nullable();
@@ -25,6 +25,8 @@ return new class extends Migration {
             $table->timestamps();
 
             $table->foreign('department_id')->references('department_id')->on('departments')->onDelete('set null');
+
+            $table->foreign('employee_id')->references('employee_id')->on('users')->onDelete('cascade');
         });
     }
 
