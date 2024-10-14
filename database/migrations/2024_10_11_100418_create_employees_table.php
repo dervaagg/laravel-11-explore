@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->bigInteger('nik')->primary();
-            $table->integer('employee_id')->unsigned()->unique(); // Menambahkan unique constraint
+            $table->integer('employee_id')->unsigned();
             $table->string('name', 255);
             $table->enum('position', ['Karyawan', 'Manager', 'Direktur', 'HRGA']);
             $table->integer('department_id')->unsigned()->nullable(); // Menjadi nullable
@@ -23,6 +23,9 @@ return new class extends Migration {
             $table->decimal('pension_allowance', 10, 2);
             $table->decimal('communication_allowance', 10, 2);
             $table->timestamps();
+
+            // Menambahkan foreign key constraint untuk department_id
+            $table->foreign('department_id')->references('department_id')->on('departments')->onDelete('set null');
         });
     }
 

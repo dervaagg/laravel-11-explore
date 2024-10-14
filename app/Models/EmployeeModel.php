@@ -9,7 +9,7 @@ class EmployeeModel extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'nik';
+    protected $primaryKey = 'employee_id';
     protected $fillable = [
         'nik',
         'name',
@@ -30,7 +30,6 @@ class EmployeeModel extends Model
     {
         return $this->belongsTo(DepartmentModel::class, 'department_id');
     }
-
     public function managerOfDepartment()
     {
         return $this->hasOne(DepartmentModel::class, 'manager_id');
