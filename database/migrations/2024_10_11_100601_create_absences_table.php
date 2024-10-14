@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->date('end_date')->nullable();
             $table->string('document')->nullable();
             $table->enum('absence_type', ['Hari', 'Jam']);
-            $table->foreign('employee_id')->references('employee_id')->on('accounts');
+            $table->foreign('employee_id')->references('employee_id')->on('users');
             $table->timestamps();
         });
     }

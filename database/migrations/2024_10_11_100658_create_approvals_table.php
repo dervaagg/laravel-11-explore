@@ -20,9 +20,9 @@ return new class extends Migration {
             $table->integer('approved_by_director')->unsigned()->nullable();
             $table->time('submission_time');
             $table->foreign('absence_id')->references('absence_id')->on('absences');
-            $table->foreign('approved_by_manager')->references('employee_id')->on('accounts');
-            $table->foreign('approved_by_hrga')->references('employee_id')->on('accounts');
-            $table->foreign('approved_by_director')->references('employee_id')->on('accounts');
+            $table->foreign('approved_by_manager')->references('employee_id')->on('users');
+            $table->foreign('approved_by_hrga')->references('employee_id')->on('users');
+            $table->foreign('approved_by_director')->references('employee_id')->on('users');
             $table->timestamps();
         });
     }

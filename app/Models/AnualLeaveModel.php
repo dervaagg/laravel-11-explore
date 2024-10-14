@@ -14,6 +14,6 @@ class AnualLeaveModel extends Model
 
     public function account()
     {
-        return $this->belongsTo(AccountModel::class, 'employee_id');
+        return $this->belongsTo(User::class, 'employee_id');
     }
 }

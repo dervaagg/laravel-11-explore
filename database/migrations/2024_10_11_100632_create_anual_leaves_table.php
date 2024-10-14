@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->integer('leaves_total');
             $table->integer('leaves_used');
             $table->integer('leaves_remaining');
-            $table->foreign('employee_id')->references('employee_id')->on('accounts');
+            $table->foreign('employee_id')->references('employee_id')->on('users');
             $table->timestamps();
         });
     }

@@ -8,11 +8,11 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->bigInteger('nik')->primary();
-            $table->integer('employee_id')->unsigned();
+            $table->bigInteger('nik')->unsigned();
+            $table->integer('employee_id')->unsigned()->primary(); // Set sebagai primary key
             $table->string('name', 255);
             $table->enum('position', ['Karyawan', 'Manager', 'Direktur', 'HRGA']);
-            $table->integer('department_id')->unsigned()->nullable(); // Menjadi nullable
+            $table->integer('department_id')->unsigned()->nullable();
             $table->integer('fingerprint_id')->nullable();
             $table->boolean('is_manager')->default(false);
             $table->boolean('is_hrga')->default(false);
@@ -24,7 +24,6 @@ return new class extends Migration {
             $table->decimal('communication_allowance', 10, 2);
             $table->timestamps();
 
-            // Menambahkan foreign key constraint untuk department_id
             $table->foreign('department_id')->references('department_id')->on('departments')->onDelete('set null');
         });
     }

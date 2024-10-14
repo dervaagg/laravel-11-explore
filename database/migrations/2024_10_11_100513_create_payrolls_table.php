@@ -30,7 +30,7 @@ return new class extends Migration {
             $table->decimal('koprasi_deduction', 10, 2);
             $table->decimal('other_deductions', 10, 2);
             $table->decimal('total_salary', 10, 2);
-            $table->foreign('employee_id')->references('employee_id')->on('accounts');
+            $table->foreign('employee_id')->references('employee_id')->on('users');
             $table->timestamps();
         });
     }

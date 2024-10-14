@@ -18,6 +18,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->enum('role', ['Karyawan', 'Manager', 'Direktur', 'HRGA', 'Administrator']); // Menambahkan role
+            $table->integer('employee_id')->unsigned()->unique(); // Menambahkan employee_id sebagai unique key
             $table->timestamps();
         });
 

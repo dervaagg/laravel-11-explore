@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->integer('requested_by');
             $table->boolean('approved_by_hrga')->default(false);
             $table->boolean('verbal_booking')->default(false);
-            $table->foreign('employee_id')->references('employee_id')->on('accounts');
+            $table->foreign('employee_id')->references('employee_id')->on('users');
             $table->foreign('room_id')->references('room_id')->on('rooms');
             $table->timestamps();
         });

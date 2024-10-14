@@ -23,7 +23,7 @@ return new class extends Migration {
             $table->time('submission_time');
             $table->integer('total_hours');
             $table->decimal('overtime_rate', 10, 2);
-            $table->foreign('employee_id')->references('employee_id')->on('accounts');
+            $table->foreign('employee_id')->references('employee_id')->on('users');
             $table->timestamps();
         });
     }

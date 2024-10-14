@@ -26,16 +26,16 @@ class OvertimeModel extends Model
 
     public function employee()
     {
-        return $this->belongsTo(AccountModel::class, 'employee_id');
+        return $this->belongsTo(User::class, 'employee_id');
     }
 
     public function divisionManager()
     {
-        return $this->belongsTo(AccountModel::class, 'division_manager_id');
+        return $this->belongsTo(User::class, 'division_manager_id');
     }
 
     public function director()
     {
-        return $this->belongsTo(AccountModel::class, 'director_id');
+        return $this->belongsTo(User::class, 'director_id');
     }
 }

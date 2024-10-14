@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'employee_id', // Add employee_id for linking with employee
+        'role', // Add role for user
     ];
 
     /**
@@ -43,5 +45,61 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Relationship with Employee
+     */
+    public function employee()
+    {
+        return $this->belongsTo(EmployeeModel::class, 'employee_id'); // Adjust this if needed
+    }
+
+    /**
+     * Relationship with Absences
+     */
+    public function absences()
+    {
+        return $this->hasMany(AbsenceModel::class, 'employee_id', 'employee_id'); // Use employee_id for linking
+    }
+
+    /**
+     * Relationship with Annual Leaves
+     */
+    public function annualLeaves()
+    {
+        return $this->hasMany(AnualLeaveModel::class, 'employee_id', 'employee_id'); // Use employee_id for linking
+    }
+
+    /**
+     * Relationship with Overtimes
+     */
+    public function overtimes()
+    {
+        return $this->hasMany(OvertimeModel::class, 'employee_id', 'employee_id'); // Use employee_id for linking
+    }
+
+    /**
+     * Relationship with Room Bookings
+     */
+    public function roomBookings()
+    {
+        return $this->hasMany(RoomBookingModel::class, 'employee_id', 'employee_id'); // Use employee_id for linking
+    }
+
+    /**
+     * Relationship with Payrolls
+     */
+    public function payrolls()
+    {
+        return $this->hasMany(PayrollModel::class, 'employee_id', 'employee_id'); // Use employee_id for linking
+    }
+
+    /**
+     * Relationship with Payroll Histories
+     */
+    public function payrollHistories()
+    {
+        return $this->hasMany(PayrollHistoryModel::class, 'employee_id', 'employee_id'); // Use employee_id for linking
     }
 }
